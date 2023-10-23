@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    {% load static %}
+    <title>Chimjoy - Multipurpose Vehicle Car Rental</title>
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/gif" sizes="16x16">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Rentaly - Multipurpose Vehicle Car Rental Website Template" name="description">
+    <meta content="" name="keywords">
+    <meta content="" name="author">
+    <!-- CSS Files
+    ================================================== -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" id="bootstrap">
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet" type="text/css" id="mdb">
+    <link href="{% static 'css/plugins.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/coloring.css' %}" rel="stylesheet" type="text/css">
+    <!-- color scheme -->
+    <link id="colors" href="{% static 'css/colors/scheme-01.css' %}" rel="stylesheet" type="text/css">
+    <style>
+        /* Define your internal CSS styles here */
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+<body onload="initialize()">
+    <div id="wrapper">
+        
+        <!-- page preloader begin -->
+        <!-- <div id="de-preloader"></div> -->
+        <!-- page preloader close -->
+
+        <!-- header begin -->
+        <header class="transparent scroll-light has-topbar">
+            <div id="topbar" class="topbar-dark text-light">
+                <div class="container">
+                    <div class="topbar-left xs-hide">
+                        <div class="topbar-widget">
+                            <div class="topbar-widget"><a href="#"><i class="fa fa-phone"></i>+2348077880262</a></div>
+                            <div class="topbar-widget"><a href="#"><i class="fa fa-envelope"></i>hq@chimjoylogistics.com.ng</a></div>
+                            <div class="topbar-widget"><a href="#"><i class="fa fa-clock-o"></i>Mon - Fri 7:00am - 10:00pm</a></div>
+                        </div>
+                    </div>
+                
+                    <div class="topbar-right">
+                        <div class="social-icons">
+                            <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
+                            <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+                            <a href="#"><i class="fa fa-youtube fa-lg"></i></a>
+                            <a href="#"><i class="fa fa-pinterest fa-lg"></i></a>
+                            <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
+                        </div>
+                    </div>  
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="de-flex sm-pt10">
+                            <div class="de-flex-col">
+                                <div class="de-flex-col">
+                                    <!-- logo begin -->
+                                    <div id="logo">
+                                        <a href="{% url 'home' %}">
+                                            <img class="logo-1" src="{% static 'images/chimjoylogo.png' %}" alt="" width="100px" height="50px">
+                                            <img class="logo-2" src="{% static 'images/chimjoylogo.png' %}" alt="" width="100px" height="50px">
+                                        </a>
+                                    </div>
+                                    <!-- logo close -->
+                                </div>
+                            </div>
+                            <div class="de-flex-col header-col-mid">
+                                <ul id="mainmenu">
+                                    <li><a class="menu-item" href="{% url 'home' %}">Home</a>
+                                    </li>
+                                    <li><a class="menu-item" href="{% url 'booking' %}">Book A Ride</a></li>
+                                    <li><a class="menu-item" href="{% url 'cars' %}">Rent A Car</a></li>
+                                    <li><a class="menu-item" href="{% url 'about' %}">About Us</a></li>
+                                    <li>
+                                        <li><a class="menu-item" href="{% url 'contact' %}">Contact</a></li>
+                                    </li>
+                                    <li><a class="menu-item" href="{% url 'dashboard' %}">My Account</a>
+                                        <ul>
+                                            <li><a class="menu-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+                                            <li><a class="menu-item" href="{% url 'profilee' %}">My Profile</a></li>
+                                            <li><a class="menu-item" href="{% url 'orders' %}">My Orders</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="de-flex-col">
+                                <div class="menu_side_area">
+                                    <a href="{% url 'logoutt' %}" class="btn-main">Log out</a>
+                                    <span id="menu-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="de-flex sm-pt10">
+                            <div class="de-flex-col">
+                                <div class="de-flex-col">
+                                    <!-- logo begin -->
+                                    <div id="logo">
+                                        <a href="{% url 'home' %}">
+                                            <img class="logo-1" src="{% static 'images/chimjoylogo.png' %}" alt="" width="100px" height="50px">
+                                            <img class="logo-2" src="{% static 'images/chimjoylogo.png' %}" alt="" width="100px" height="50px">
+                                        </a>
+                                    </div>
+                                    <!-- logo close -->
+                                </div>
+                            </div>
+                            <div class="de-flex-col header-col-mid">
+                                <ul id="mainmenu">
+                                    <li><a class="menu-item" href="{% url 'home' %}">Home</a>
+                                    </li>
+                                    <li><a class="menu-item" href="{% url 'booking' %}">Book A Ride</a></li>
+                                    <li><a class="menu-item" href="{% url 'cars' %}">Rent A Car</a></li>
+                                    <li><a class="menu-item" href="{% url 'about' %}">About Us</a></li>
+                                    <li>
+                                        <li><a class="menu-item" href="{% url 'contact' %}">Contact</a></li>
+                                    </li>
+                                    <li><a class="menu-item" href="{% url 'dashboard' %}">My Account</a>
+                                        <ul>
+                                            <li><a class="menu-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+                                            <li><a class="menu-item" href="{% url 'profilee' %}">My Profile</a></li>
+                                            <li><a class="menu-item" href="{% url 'orders' %}">My Orders</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="de-flex-col">
+                                <div class="menu_side_area">
+                                    <a href="{% url 'loginn' %}" class="btn-main">Sign In</a>
+                                    <span id="menu-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </header>
+        <!-- header close -->        <!-- content begin -->
+        <div class="no-bottom no-top zebra" id="content">
+            <div id="top"></div>
+            
+            <!-- section begin -->
+            <section id="subheader" class="jarallax text-light">
+                <img src="https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1925&q=80" class="jarallax-img" alt="">
+                    <div class="center-y relative text-center">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+									<h1>Book A Ride</h1>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+            <!-- section close -->
+
+            <section id="section-hero" aria-label="section" class="no-top mt-80 sm-mt-0">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-12">
+                            <div class="spacer-single sm-hide"></div>
+                            <div class="p-4 rounded-3 shadow-soft" data-bgcolor="#ffffff">
+                                <form name="contactForm" id='contact_form' method="post" action="{% url 'cars' %}">
+                                    {% csrf_token %}
+                                    <div id="step-1" class="row">
+                                        <h5>What is your vehicle type?</h5>
+                                        <div class="col-lg-6 mb30">
+                                            <div class="de_form de_radio row g-3">
+                                                <div class="radio-img col-lg-3 col-sm-3 col-6">
+                                                    <input id="radio-1a" name="Car_Type" type="radio" value="Residential" checked="checked">
+                                                    <label for="radio-1a"><img src="{% static 'images/select-form/car.png' %}" alt="">Car</label>
+                                                </div>
+
+                                                <div class="radio-img col-lg-3 col-sm-3 col-6">
+                                                    <input id="radio-1b" name="Car_Type" type="radio" value="Office">
+                                                    <label for="radio-1b"><img src="{% static 'images/select-form/van.png' %}" alt="">Van</label>
+                                                </div>
+
+                                                <div class="radio-img col-lg-3 col-sm-3 col-6">
+                                                    <input id="radio-1c" name="Car_Type" type="radio" value="Commercial">
+                                                    <label for="radio-1c"><img src="{% static 'images/select-form/minibus.png' %}" alt="">Minibus</label>
+                                                </div>
+
+                                                <div class="radio-img col-lg-3 col-sm-3 col-6">
+                                                    <input id="radio-1d" name="Car_Type" type="radio" value="Retail">
+                                                    <label for="radio-1d"><img src="{% static 'images/select-form/sportscar.png' %}" alt="">Prestige</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="de_form de_radio row g-3">
+                                                <div class="radio-img col-lg-3 col-sm-3 col-6">
+                                                    <input id="radio-1a" name="Car_Type" type="radio" value="Residential" checked="checked">
+                                                    <label for="radio-1a"><img src="{% static 'images/select-form/car.png' %}" alt=""> ExoticCars</label>
+                                                </div>
+
+                                                <div class="radio-img col-lg-3 col-sm-3 col-6">
+                                                    <input id="radio-1b" name="Car_Type" type="radio" value="Office">
+                                                    <label for="radio-1b"><img src="{% static 'images/select-form/van.png' %}" alt="">Van Ford</label>
+                                                </div>
+
+                                                <div class="radio-img col-lg-3 col-sm-3 col-6">
+                                                    <input id="radio-1c" name="Car_Type" type="radio" value="Commercial">
+                                                    <label for="radio-1c"><img src="{% static 'images/select-form/minibus.png' %}" alt="">Bus</label>
+                                                </div>
+
+                                                <div class="radio-img col-lg-3 col-sm-3 col-6">
+                                                    <input id="radio-1d" name="Car_Type" type="radio" value="Retail">
+                                                    <label for="radio-1d"><img src="{% static 'images/select-form/sportscar.png' %}" alt="">SportCars</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="de-box mb25">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="{{ form.model.id_for_label }}">Select a Vehicle</label>
+                                            {{ form.model }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="{{ form.pickup_location.id_for_label }}">Pick Up Location</label>
+                                            {{ form.pickup_location }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="{{ form.destination.id_for_label }}">Drop Off Location</label>
+                                            {{ form.destination }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="{{ form.date.id_for_label }}">Pick Up Date</label>
+                                            {{ form.date }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="{{ form.time.id_for_label }}">Pick Up Time</label>
+                                            {{ form.time }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="{{ form.email.id_for_label }}">Email</label>
+                                            {{ form.email }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                                            {{ form.phone_number }}
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Book Now</button>
+                                    </form>                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="spacer-single"></div>
+
+                    <div class="row">
+
+                        <div class="col-md-3 wow fadeInRight" data-wow-delay=".2s" >
+                            <div class="feature-box style-4 text-center">
+                                <a href="#"><i class="bg-color text-light i-boxed fa fa-car"></i></a>
+                                <div class="text">
+                                    <a href="#"><h4>Choose a vehicle</h4></a>
+                                    Unlock unparalleled adventures and memorable journeys with our vast fleet of vehicles tailored to suit every need, taste, and destination.
+                                </div>
+                                <span class="wm">1</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 wow fadeInRight" data-wow-delay=".4s" >
+                            <div class="feature-box style-4 text-center">
+                                <a href="#"><i class="bg-color text-light i-boxed fa fa-calendar"></i></a>
+                                <div class="text">
+                                    <a href="#"><h4>Pick location &amp; date</h4></a>
+                                    Pick your ideal location and date, and let us take you on a journey filled with convenience, flexibility, and unforgettable experiences.
+                                </div>
+                                <span class="wm">2</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 wow fadeInRight" data-wow-delay=".6s" >
+                            <div class="feature-box style-4 text-center">
+                                <a href="#"><i class="bg-color text-light i-boxed fa fa-pencil-square-o"></i></a>
+                                <div class="text">
+                                    <a href="#"><h4>Make a booking</h4></a>
+                                    Secure your reservation with ease, unlocking a world of possibilities and embarking on your next adventure with confidence.
+                                </div>
+                                <span class="wm">3</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 wow fadeInRight" data-wow-delay=".6s" >
+                            <div class="feature-box style-4 text-center">
+                                <a href="#"><i class="bg-color text-light i-boxed fa fa-smile-o"></i></a>
+                                <div class="text">
+                                    <a href="#"><h4>Sit back & relax</h4></a>
+                                    Hassle-free convenience as we take care of every detail, allowing you to unwind and embrace a journey filled comfort.
+                                </div>
+                                <span class="wm">3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="text-light jarallax">
+                <img src="{% static 'images/background/3.jpg' %}" class="jarallax-img" alt="">
+                <div class="container">
+                    <div class="row g-5">
+                        <div class="col-lg-6 wow fadeInRight">
+                            <h2>We offer easy affordable <span class="id-color">Ride</span> and <span class="id-color">Logistics</span> in Owerri and its Environs</h2>
+                        </div>
+                        <div class="col-lg-6 wow fadeInLeft">
+                            Chimjoy Car Rentals isn't just a car rental agency; we are the key to stress-free and memorable journeys in Owerri and its beautiful environs. We have a track record of reliability, affordability, and convenience, we make every ride with us an unforgettable adventure. We understand that every trip is an opportunity to create lasting memories, and we're here to help you to your desired destination  without stress.  What distinguishes us is our unwavering commitment to our customers. You can reach out to us 24/7 for maximum support. Book your ride with us today for a smooth journey.
+                        </div>
+                    </div>
+                    <div class="spacer-double"></div>
+                    <div class="row text-center">
+                        <div class="col-md-3 col-sm-6 mb-sm-30">
+                            <div class="de_count transparent text-light wow fadeInUp">
+                                <h3 class="timer" data-to="643" data-speed="3000">0</h3>
+                                Completed Orders
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-sm-30">
+                            <div class="de_count transparent text-light wow fadeInUp">
+                                <h3 class="timer" data-to="497" data-speed="3000">0</h3>
+                                Happy Customers
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-sm-30">
+                            <div class="de_count transparent text-light wow fadeInUp">
+                                <h3 class="timer" data-to="23" data-speed="3000">0</h3>
+                                Vehicles
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-sm-30">
+                            <div class="de_count transparent text-light wow fadeInUp">
+                                <h3 class="timer" data-to="24" data-speed="3000">0</h3>
+                                24/7 support
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section aria-label="section" class="pt40 pb40 text-light" data-bgcolor="#181818">
+                <div class="wow fadeInRight d-flex">
+                  <div class="de-marquee-list">
+                    <div class="d-item">
+                        <span class="d-item-txt">Relax</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <span class="d-item-txt">Rest</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <span class="d-item-txt">and</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <span class="d-item-txt">Let</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <span class="d-item-txt">Chimjoy</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <span class="d-item-txt">Make</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <span class="d-item-txt">Your</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <span class="d-item-txt">Journey</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <span class="d-item-txt">Effortless</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <!-- <span class="d-item-txt">Truck</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <span class="d-item-txt">Minivans</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span>
+                        <span class="d-item-txt">Exotic Cars</span>
+                        <span class="d-item-display">
+                          <i class="d-item-dot"></i>
+                        </span> -->
+                     </div>
+                  </div>
+                </div>
+            </section>
+
+			
+        </div>
+        <!-- content close -->
+
+        <a href="#" id="back-to-top"></a>
+        
+        <!-- footer begin -->
+        <footer class="text-light">
+            <div class="container">
+                <div class="row g-custom-x">
+                    <div class="col-lg-3">
+                        <div class="widget">
+                            <h5>About Chimjoy</h5>
+                            <p>Welcome to ChimJoy Car Hire, We are proud to be a subsidiary of 
+                                Chimjoy Logistics Services Limited, a leading logistics firm 
+                                operating in Owerri, Nigeria. At ChimJoy Car Hire, we are dedicated to 
+                                bridging the gap between the untrusted high-priced car hire services and the 
+                                numerous unorganized mediocre taxis that operate within Owerri Airport.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3">
+                        <div class="widget">
+                            <h5>Contact Info</h5>
+                            <address class="s1">
+                                <span><i class="id-color fa fa-map-marker fa-lg"></i>Corporate Office: 65 Christ Church Road, Owerri, Imo State.</span>
+                                <span><i class="id-color fa fa-phone fa-lg"></i>+2348077880262</span>
+                                <span><i class="id-color fa fa-envelope-o fa-lg"></i><a href="mailto:hq@chimjoylogistics.com.ng">hq@chimjoylogistics.com.ng</a></span>
+                            </address>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <h5>Quick Links</h5>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="widget">
+                                    <ul>
+                                        <li><a href="{% url 'about' %}">About</a></li>
+                                        <li><a href="{% url 'cars' %}">Cars</a></li>
+                                        <li><a href="{% url 'registerr' %}">Register</a></li>
+                                        <li><a href="{% url 'booking' %}">Booking</a></li>
+                                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="widget">
+                            <h5>Social Network</h5>
+                            <div class="social-icons">
+                                <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
+                                <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+                                <a href="#"><i class="fa fa-linkedin fa-lg"></i></a>
+                                <a href="#"><i class="fa fa-pinterest fa-lg"></i></a>
+                                <a href="#"><i class="fa fa-rss fa-lg"></i></a>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="subfooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="de-flex">
+                                <div class="de-flex-col">
+                                    <a href="{% url 'home' %}">
+                                        <p> Copyright @  Chimjoy logistics 2023 All rights reserved!</p>
+                                           <p>designed by <a href="https://bestlinkdigitaltech.com/" target="_blank" style="cursor: pointer; color: #007bff;"> Best Link Digital Tech</a></p>
+                                        </a>
+                                </div>
+                                <ul class="menu-simple">
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer close -->
+        
+    </div>
+    <!-- Javascript Files
+    ================================================== -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/designesia.js' %}"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgiM7ogCAA2Y5pgSk2KXZfxF5S_1jsptA&amp;libraries=places&amp;callback=initPlaces" async="" defer=""></script> -->
+
+</body>
+</html>
